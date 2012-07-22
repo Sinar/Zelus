@@ -45,8 +45,8 @@ module Setup
       party.code = rec[0]
       party.name = rec[1]
       party.name_in_malay = rec[2]
-      party.founded_in = rec[3]
-      party.disbanded_in = rec[4]
+      party.founded_in = rec[3].to_i unless rec[3].value == ""      
+      party.disbanded_in = rec[4].to_i unless rec[4].value == ""      
       party.save      
     end    
   end
@@ -58,8 +58,8 @@ module Setup
         member = Person.first :uuid => rec[1]
         party = Party.first :uuid => rec[6]
         m = Membership.create :person => member, :party => party
-        m.joined_at = rec[2]
-        m.parted_at = rec[3]
+        m.joined_at = rec[2].to_i unless rec[2].value == ""
+        m.parted_at = rec[3].to_i unless rec[3].value == ""
         m.save
       rescue
         p $!
@@ -75,8 +75,8 @@ module Setup
       coalition.code = rec[0]
       coalition.name = rec[1]
       coalition.name_in_malay = rec[2]
-      coalition.founded_in = rec[3]
-      coalition.disbanded_in = rec[4]
+      coalition.founded_in = rec[3].to_i unless rec[3].value == ""      
+      coalition.disbanded_in = rec[4].to_i unless rec[4].value == ""      
       coalition.save      
     end    
   end
@@ -88,8 +88,8 @@ module Setup
         coalition = Coalition.first :uuid => rec[6]
         party = Party.first :uuid => rec[5]
         c = Coalitionship.create :coalition => coalition, :party => party
-        c.joined_at = rec[1]
-        c.parted_at = rec[2]
+        c.joined_at = rec[1].to_i unless rec[1].value == ""
+        c.parted_at = rec[2].to_i unless rec[2].value == ""
         c.save
       rescue
         p $!
