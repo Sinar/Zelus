@@ -9,4 +9,5 @@
    dm-aggregates 
    dm-constraints 
    dm-pager 
-   dm-validations).each  { |gem| require gem}
+   dm-validations
+   psych).each  { |gem| require gem}
