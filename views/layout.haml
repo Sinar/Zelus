@@ -1,0 +1,20 @@
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title :: Zelus :: 
+    %link{rel:  'stylesheet', href:  '/css/bootstrap.min.css', type:  'text/css'}
+    %link{rel:  'stylesheet', href:  '/css/prettify.css', type:  'text/css'}
+    %link{rel:  'stylesheet', href:  '/css/docs.css', type:  'text/css'}    
+    %link{rel:  'stylesheet', href:  '/css/extra.css', type:  'text/css'}
+    %link{rel:  'stylesheet', href:  'http://fonts.googleapis.com/css?family=Gudea', type:  'text/css'}
+
+    %script{type: 'text/javascript', src: "/js/jquery-1.7.2.min.js"}
+    %script{type: 'text/javascript', src: "/js/bootstrap-dropdown.js"}
+    %script{type: 'text/javascript', src: "/js/bootstrap-collapse.js"}
+    
+    / [if lt IE 9]
+      %script{src: "http://html5shim.googlecode.com/svn/trunk/html5.js"}
+
+  %body
+    =snippet(:toolbar, layout: false)
+    =yield
