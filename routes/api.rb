@@ -5,6 +5,17 @@ get "/people" do
   }.to_json
 end
 
+# get people by page size and page
+get "/people/:page_size/?:page?" do
+  people = Person.all.page(:page => params[:page], :per_page => params[:page_size])
+  { status: "success",
+    page_size: params[:page_size],
+    next_page: people.pager.next_page,
+    previous_page: people.pager.previous_page,
+    payload: people     
+  }.to_json
+end
+
 # get all MPs
 get "/representatives" do
   { status: "success",
