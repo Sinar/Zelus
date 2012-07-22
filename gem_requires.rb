@@ -11,3 +11,5 @@
    dm-pager 
    dm-validations
    psych).each  { |gem| require gem}
+
+YAML::ENGINE.yamler = "psych"   
