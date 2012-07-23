@@ -32,43 +32,43 @@ GET requests are not authenticated but you can optionally attach the API key in 
 
 There are a number of entities within Zelus.
 
-### User
+#### User
 
 An account in Zelus. Each user account has an API key, which is essential to creating records in Zelus.
 
-### Person
+#### Person
 
 A human being
 
-### Representative
+#### Representative
 
 A Member of Parliament, ADUN or Council Member, generally anyone who is elected by and represents citizens. Representatives and People have the same attributes.
 
-### Party
+#### Party
 
 A political party
 
-### Coalition
+#### Coalition
 
 A coalition of political parties
 
-### Region
+#### Region
 
 A geographical region
 
-### Constituency
+#### Constituency
 
 A political constituency
 
-### District
+#### District
 
 A contested district
 
-### UUID
+#### UUID
 
 A UUID is a unique identifier, which is compatible with RFC4122. All entities in Zelus are uniquely identified by their UUID. To reference an entity within Zelus, you need to know its UUID.
 
-### API key
+#### API key
 
 Every POST request must be made with an API key. You can also attach a GET request with an API key although it is not necessary. Each request (GET or POST) is logged and you will be able to keep track on your own API calls (future feature).
 
@@ -127,7 +127,7 @@ Update a person record, identified by its uuid. Parameters used are as with crea
 
     POST /representative/:uuid
     
-Update a person record, identified by its uuid. Parameters used are as with creating a person record as above. Note that you need to provide an API key along with every POST request.
+Update a person record, identified by its ```uuid. Parameters used are as with creating a person record as above. Note that you need to provide an API key along with every POST request.
 
     GET /people/search/:query
     
@@ -141,8 +141,8 @@ Show all people by party, given the party uuid
     
 Associate a person with a party. Parameters are:
 
-* person_uuid
-* party_uuid
+* ```person_uuid
+* ```party_uuid
 
 Note that you need to provide an API key along with every POST request.
 
