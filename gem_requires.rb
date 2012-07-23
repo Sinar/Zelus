@@ -9,7 +9,4 @@
    dm-aggregates 
    dm-constraints 
    dm-pager 
-   dm-validations
-   psych).each  { |gem| require gem}
-
-YAML::ENGINE.yamler = "psych"   
+   dm-validations).each  { |gem| require gem}
