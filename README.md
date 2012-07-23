@@ -93,7 +93,7 @@ The `status` can be either `success` or `failure`. The `payload` is usually anot
   
 Show all people
 
-***
+
 
     GET /people/:page_size/:page
 
@@ -114,25 +114,25 @@ The response for this request is:
       payload: ...
     }
 
-***
+
 
     GET /representatives
   
 Show all people who are members of parliament
 
-***
+
 
     GET /person/:uuid
   
 Show person by uuid. This includes the parties he/she has joined and/or is currently in. This also gives a list of people he/she is connected with.
 
-***
+
 
     GET /representative/:uuid
   
 Show an MP by uuid
 
-***
+
 
     POST /person
   
@@ -157,37 +157,37 @@ Create a new person record. Parameters for creating a person are:
 
 Note that you need to provide an API key along with every POST request.
 
-***
+
 
     POST /representative
   
 Create a new MP record. Parameters are as with creating a person record above.
 
-***
+
 
     POST /person/:uuid
   
 Update a person record, identified by its uuid. Parameters used are as with creating a person record as above. Note that you need to provide an API key along with every POST request.
 
-***
+
 
     POST /representative/:uuid
     
 Update a person record, identified by its uuid. Parameters used are as with creating a person record as above. Note that you need to provide an API key along with every POST request.
 
-***
+
 
     GET /people/search/:query
     
 Search for people by name or email
 
-***
+
 
     GET /people/party/:uuid
     
 Show all people by party, given the party uuid
 
-***
+
 
     POST /person/party
     
@@ -198,7 +198,7 @@ Associate a person with a party. Parameters are:
 
 Note that you need to provide an API key along with every POST request.
 
-***
+
 
     POST /person/connect
     
@@ -210,31 +210,31 @@ Connect a person with another person. Parameters are:
 
 Note that you need to provide an API key along with every POST request.
 
-***
+
 
     GET /regions
     
 Show all regions
 
-***
+
 
     GET /coalitions
     
 Show all coalitions
 
-***
+
 
     GET /parties
 
 Show all parties
 
-***
+
 
     GET /constituencies
 
 Show all constituencies
 
-***
+
 
     GET /districts
 
