@@ -84,20 +84,34 @@ get "/people/party/:uuid" do
 end
 
 # associate a person with a party
-post "/person/:uuid/party/:uuid" do
-  person = Person.first uuid: params[:uuid]
+post "/person/party" do
+  person = Person.first uuid: params[:person_uuid]
   raise "Person not found" if person.nil?  
-  party = Party.first uuid: params[:uuid]  
+  party = Party.first uuid: params[:party_uuid]  
   raise "Party not found" if party.nil?
   
   begin
     party.people << person
     party.save
+    {status: "success"}.to_json  
   rescue
     raise "Cannot associate person with party"
   end    
 end
 
+# connect 2 people together, given a relationship
+# e.g. POST 
+post "/people/connect" do
+  person1 = Person.first uuid: params[:uuid1]
+  person2 = Person.first uuid: params[:uuid2]
+  raise "Person not found" if person1.nil? or person2.nil? 
+  begin
+    link = Link.create(source: person1, target: person2, relation: params[:relation])
+    {status: "success"}.to_json  
+  rescue
+    raise "Cannot connect these 2 people"
+  end
+end
 
 get "/regions" do
   { status: "success",
