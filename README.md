@@ -114,7 +114,7 @@ The response for this request is:
       payload: ...
     }
 
-
+`previous_page` is the number of the prevous page, while `next_page` is the number of the next page.
 
     GET /representatives
   
