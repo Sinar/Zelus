@@ -127,7 +127,7 @@ Update a person record, identified by its uuid. Parameters used are as with crea
 
     POST /representative/:uuid
     
-Update a person record, identified by its ```uuid. Parameters used are as with creating a person record as above. Note that you need to provide an API key along with every POST request.
+Update a person record, identified by its uuid. Parameters used are as with creating a person record as above. Note that you need to provide an API key along with every POST request.
 
     GET /people/search/:query
     
@@ -141,8 +141,8 @@ Show all people by party, given the party uuid
     
 Associate a person with a party. Parameters are:
 
-* ```person_uuid
-* ```party_uuid
+* person_uuid
+* party_uuid
 
 Note that you need to provide an API key along with every POST request.
 
