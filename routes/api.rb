@@ -5,16 +5,7 @@ get "/people" do
   }.to_json
 end
 
-# get people by page size and page
-get "/people/:page_size/?:page?" do
-  people = Person.all.page(:page => params[:page], :per_page => params[:page_size])
-  { status: "success",
-    page_size: params[:page_size],
-    next_page: people.pager.next_page,
-    previous_page: people.pager.previous_page,
-    payload: people     
-  }.to_json
-end
+
 
 # get all MPs
 get "/representatives" do
@@ -27,11 +18,19 @@ end
 get "/person/:uuid" do
   person = Person.first(uuid: params[:uuid])
   raise "Person not found" if person.nil?
+  
+  parties = person.memberships.collect do |membership|
+    { position: membership.position, party: membership.party }
+  end
+  connections = person.links.collect do |link|
+    { relation: link.relation, person: link.target }
+  end
+
   { status: "success",
     payload: {
       person: person,
-      parties: person.parties, 
-      connections: person.connections      
+      parties: parties, 
+      connections: connections      
     }
   }.to_json
 end
@@ -99,8 +98,19 @@ post "/person/party" do
   end    
 end
 
+# get people by page size and page
+get "/people/:page_size/?:page?" do
+  people = Person.all.page(:page => params[:page], :per_page => params[:page_size])
+  { status: "success",
+    page_size: params[:page_size],
+    next_page: people.pager.next_page,
+    previous_page: people.pager.previous_page,
+    payload: people     
+  }.to_json
+end
+
 # connect 2 people together, given a relationship
-# e.g. POST 
+
 post "/people/connect" do
   person1 = Person.first uuid: params[:uuid1]
   person2 = Person.first uuid: params[:uuid2]
