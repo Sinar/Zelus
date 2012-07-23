@@ -6,6 +6,10 @@ Zelus is a part of the [Sinar Project](http://sinarproject.org). Sinar Project i
 
 Zelus is a re-write of the earlier Kratos project, in [Sinatra](http://www.sinatrarb.com). Zelus provides data on Members of Parliament (MP), ADUN and Council Members in Malaysia, including what they stand for, whay their policies are and how to contact them. The primary service that Zelus provides is a set of APIs that other projects and applications are able to extract information on. The target users of Zelus are software applications!
 
+The primary API endpoint for Zelus is:
+
+    http://zelus.herokuapp.com
+
 Zelus is a work in progress! 
 
 
