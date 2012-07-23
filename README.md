@@ -1,7 +1,16 @@
 # Zelus APIs
 
+## What is Zelus 
+
+Zelus is a part of the [Sinar Project](http://sinarproject.org). Sinar Project is a collection of related open source projects which consists of open data providers as well as applications that make information accessible to Malaysian citizens.
+
+Zelus is a re-write of the earlier Kratos project, in [Sinatra](http://www.sinatrarb.com). Zelus provides data on Members of Parliament (MP), ADUN and Council Members in Malaysia, including what they stand for, whay their policies are and how to contact them. The primary service that Zelus provides is a set of APIs that other projects and applications are able to extract information on. The target users of Zelus are software applications!
+
+Zelus is a work in progress! 
+
 
 ## Overview
+
 There are 2 types of requests to the Zelus APIs:
 
 * HTTP GET - not authenticated, used to retrieve data only
@@ -11,39 +20,52 @@ Generally to get data from Zelus, you will do something like the following:
 
     GET /person/<uuid>
 
+GET requests are not authenticated but you can optionally attach the API key in order to allow us to track usage by your application. A sample application is provided at https://github.com/Sinar/Zelus-Sample.
+
 ## Main concepts
 
 ### Entities
+
 There are a number of entities within Zelus.
 
 ### User
+
 An account in Zelus. Each user account has an API key, which is essential to creating records in Zelus.
 
 ### Person
+
 A human being
 
 ### Representative
-A Member of Parliament. Representatives and People have the same attributes.
+
+A Member of Parliament, ADUN or Council Member, generally anyone who is elected by and represents citizens. Representatives and People have the same attributes.
 
 ### Party
+
 A political party
 
 ### Coalition
+
 A coalition of political parties
 
 ### Region
+
 A geographical region
 
 ### Constituency
+
 A political constituency
 
 ### District
+
 A contested district
 
 ### UUID
+
 A UUID is a unique identifier, which is compatible with RFC4122. All entities in Zelus are uniquely identified by their UUID. To reference an entity within Zelus, you need to know its UUID.
 
 ### API key
+
 Every POST request must be made with an API key. You can also attach a GET request with an API key although it is not necessary. Each request (GET or POST) is logged and you will be able to keep track on your own API calls (future feature).
 
     POST /person?api_key=<api-key>
