@@ -8,7 +8,7 @@ There are 2 types of requests to the Zelus APIs:
 * HTTP POST - authenticated by an API key, used to create or update records in Zelus
 Generally to get data from Zelus, you will do something like the following:
 
-  GET /person/<uuid>
+    GET /person/<uuid>
 
 ## Main concepts
 
@@ -50,19 +50,24 @@ If you want to create records, please submit a request to create a user account 
 
 ## API documentation
 
-  GET /people
+    GET /people
+  
 Show all people
 
-  GET /representatives
+    GET /representatives
+  
 Show all people who are members of parliament
 
-  GET /person/:uuid
+    GET /person/:uuid
+  
 Show person by uuid
 
-  GET /representative/:uuid
+    GET /representative/:uuid
+  
 Show an MP by uuid
 
-  POST /person
+    POST /person
+  
 Create a new person record. Parameters for creating a person are:
 
 * name - full name
@@ -82,45 +87,58 @@ Create a new person record. Parameters for creating a person are:
 * deceased_at - a date field representing the date of the person's death (if so)
 * biography - a text field of information on the person
 
-  POST /representative
+
+    POST /representative
+  
 Create a new MP record. Parameters are as with creating a person record above.
 
-  POST /person/:uuid
+    POST /person/:uuid
+  
 Update a person record, identified by its uuid. Parameters used are as with creating a person record as above. 
 
-  POST /representative/:uuid
+    POST /representative/:uuid
+    
 Update a person record, identified by its uuid. Parameters used are as with creating a person record as above.
 
-  GET /people/search/:query
+    GET /people/search/:query
+    
 Search for people by name or email
 
-  GET /people/party/:uuid
+    GET /people/party/:uuid
+    
 Show all people by party, given the party uuid
 
-  POST /person/party
+    POST /person/party
+    
 Associate a person with a party. Parameters are:
 
 * person_uuid
 * party_uuid
 
-  POST /person/connect
+    POST /person/connect
+    
 Connect a person with another person. Parameters are:
 
 * uuid1 - uuid of the first person
 * uuid2 - uuid of the second person
 * relation - the relationship between the 2 people e.g. father-son, husband-wife, friend, business associate, brother-sister etc
 
-  GET /regions
+    GET /regions
+    
 Show all regions
 
-  GET /coalitions
+    GET /coalitions
+    
 Show all coalitions
 
-  GET /parties
+    GET /parties
+
 Show all parties
 
-GET /constituencies
+    GET /constituencies
+
 Show all constituencies
 
-GET /districts
+    GET /districts
+
 Show all districts
