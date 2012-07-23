@@ -6,6 +6,7 @@ There are 2 types of requests to the Zelus APIs:
 
 * HTTP GET - not authenticated, used to retrieve data only
 * HTTP POST - authenticated by an API key, used to create or update records in Zelus
+
 Generally to get data from Zelus, you will do something like the following:
 
     GET /person/<uuid>
@@ -45,7 +46,8 @@ A UUID is a unique identifier, which is compatible with RFC4122. All entities in
 ### API key
 Every POST request must be made with an API key. You can also attach a GET request with an API key although it is not necessary. Each request (GET or POST) is logged and you will be able to keep track on your own API calls (future feature).
 
-POST /person?api_key=<api-key>
+    POST /person?api_key=<api-key>
+
 If you want to create records, please submit a request to create a user account in Zelus.
 
 ## API documentation
@@ -87,6 +89,7 @@ Create a new person record. Parameters for creating a person are:
 * deceased_at - a date field representing the date of the person's death (if so)
 * biography - a text field of information on the person
 
+Note that you need to provide an API key along with every POST request.
 
     POST /representative
   
@@ -94,11 +97,11 @@ Create a new MP record. Parameters are as with creating a person record above.
 
     POST /person/:uuid
   
-Update a person record, identified by its uuid. Parameters used are as with creating a person record as above. 
+Update a person record, identified by its uuid. Parameters used are as with creating a person record as above. Note that you need to provide an API key along with every POST request.
 
     POST /representative/:uuid
     
-Update a person record, identified by its uuid. Parameters used are as with creating a person record as above.
+Update a person record, identified by its uuid. Parameters used are as with creating a person record as above. Note that you need to provide an API key along with every POST request.
 
     GET /people/search/:query
     
@@ -115,6 +118,8 @@ Associate a person with a party. Parameters are:
 * person_uuid
 * party_uuid
 
+Note that you need to provide an API key along with every POST request.
+
     POST /person/connect
     
 Connect a person with another person. Parameters are:
@@ -122,6 +127,8 @@ Connect a person with another person. Parameters are:
 * uuid1 - uuid of the first person
 * uuid2 - uuid of the second person
 * relation - the relationship between the 2 people e.g. father-son, husband-wife, friend, business associate, brother-sister etc
+
+Note that you need to provide an API key along with every POST request.
 
     GET /regions
     
