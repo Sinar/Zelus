@@ -38,11 +38,11 @@ An account in Zelus. Each user account has an API key, which is essential to cre
 
 #### Person
 
-A human being
+A human being. This is the base entity for a representative.
 
 #### Representative
 
-A Member of Parliament, ADUN or Council Member, generally anyone who is elected by and represents citizens. Representatives and People have the same attributes.
+A Member of Parliament, ADUN or Council Member, generally anyone who is elected by and represents citizens. Representatives and People have the same attributes. A representative can be connected with one or more people, who might or might not be another representative. For example, this can show an MP and 2 of his business associates.
 
 #### Party
 
@@ -76,23 +76,63 @@ Every POST request must be made with an API key. You can also attach a GET reque
 
 If you want to create records, please submit a request to create a user account in Zelus.
 
+## Format
+
+All records are in [JSON](http://www.json.org/) only. The general syntax for the response is:
+
+    { 
+      status: success || error,
+      payload: ... 
+    }
+
+The `status` can be either `success` or `failure`. The `payload` is usually another JSON object or a list of JSON objects.
+
 ## API documentation
 
     GET /people
   
 Show all people
 
+***
+
+    GET /people/:page_size/:page
+
+Get all people, with pagination. Parameters are:
+
+* page_size - how many records to get in a single call
+* page - the page number
+
+You will get a list of people records and the current page number asked for. For example, if you request `GET /people/10/1` you will get a list of the first 10 people records. If you request `GET /people/10/2` you will get a list of the next 10 people records.
+
+The response for this request is:
+
+    {
+      status: success || error,
+      page_size: <the size of the current page>
+      next_page: <the next page number>
+      previous_page: <the preious page number>
+      payload: ...
+    }
+
+***
+
     GET /representatives
   
 Show all people who are members of parliament
 
+***
+
     GET /person/:uuid
   
-Show person by uuid
+Show person by uuid. This includes the parties he/she has joined and/or is currently in. This also gives a list of people he/she is connected with.
+
+***
 
     GET /representative/:uuid
   
 Show an MP by uuid
+
+***
 
     POST /person
   
@@ -117,25 +157,37 @@ Create a new person record. Parameters for creating a person are:
 
 Note that you need to provide an API key along with every POST request.
 
+***
+
     POST /representative
   
 Create a new MP record. Parameters are as with creating a person record above.
+
+***
 
     POST /person/:uuid
   
 Update a person record, identified by its uuid. Parameters used are as with creating a person record as above. Note that you need to provide an API key along with every POST request.
 
+***
+
     POST /representative/:uuid
     
 Update a person record, identified by its uuid. Parameters used are as with creating a person record as above. Note that you need to provide an API key along with every POST request.
+
+***
 
     GET /people/search/:query
     
 Search for people by name or email
 
+***
+
     GET /people/party/:uuid
     
 Show all people by party, given the party uuid
+
+***
 
     POST /person/party
     
@@ -145,6 +197,8 @@ Associate a person with a party. Parameters are:
 * party_uuid
 
 Note that you need to provide an API key along with every POST request.
+
+***
 
     POST /person/connect
     
@@ -156,21 +210,31 @@ Connect a person with another person. Parameters are:
 
 Note that you need to provide an API key along with every POST request.
 
+***
+
     GET /regions
     
 Show all regions
+
+***
 
     GET /coalitions
     
 Show all coalitions
 
+***
+
     GET /parties
 
 Show all parties
 
+***
+
     GET /constituencies
 
 Show all constituencies
+
+***
 
     GET /districts
 
