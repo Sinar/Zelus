@@ -6,6 +6,7 @@ DataMapper.setup(:default, ENV['DATABASE_URL'] || 'mysql://root:root@localhost/z
 DataMapper.finalize
 
 module Setup
+
   def self.init
     
   end
@@ -126,5 +127,7 @@ module Setup
     
   end
   
-  
 end
+
+DataMapper.auto_upgrade!
+
