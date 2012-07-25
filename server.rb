@@ -22,19 +22,21 @@ end
 
 # log everything
 after do
-  log = Log.new
-  log.remote_addr = request.env['REMOTE_ADDR']
-  log.client = request.env['HTTP_USER_AGENT']
-  log.method = request.env['REQUEST_METHOD']
-  log.path = request.env['REQUEST_PATH']
-  log.http_version = request.env['HTTP_VERSION']
-  log.return_code = response.status.to_s
-  log.return_size = response.body.to_s.gsub("\\","").size
-  if params[:api_key]
-    user = User.first api_key: params[:api_key]
-    log.user_uuid = user.uuid
+  unless IGNORE_LIST.include?(request.path_info)
+    log = Log.new
+    log.remote_addr = request.env['REMOTE_ADDR']
+    log.client = request.env['HTTP_USER_AGENT']
+    log.method = request.env['REQUEST_METHOD']
+    log.path = request.env['REQUEST_PATH']
+    log.http_version = request.env['HTTP_VERSION']
+    log.return_code = response.status.to_s
+    log.return_size = response.body.to_s.gsub("\\","").size
+    if params[:api_key]
+      user = User.first api_key: params[:api_key]
+      log.user_uuid = user.uuid
+    end
+    log.save
   end
-  log.save
 end
 
 # index page

@@ -16,5 +16,4 @@ gem 'dm-pager', '1.1.0'
 gem 'dm-mysql-adapter', :group => :local
 gem 'dm-postgres-adapter', :group => :heroku
 gem 'pg', '0.10.0', :group => :heroku
-gem 'psych'
 gem 'thin', :group => :development
