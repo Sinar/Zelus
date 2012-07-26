@@ -129,5 +129,3 @@ module Setup
   
 end
 
-DataMapper.auto_upgrade!
-
