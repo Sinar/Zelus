@@ -1,3 +1,5 @@
+require 'dm-transactions'
+
 module DataMapperHelper
 end
 

@@ -22,6 +22,7 @@ gem 'psych'
 gem 'thin', :group => :development
 
 gem 'rspec', :group => :test
-gem 'rack-test', :require => 'rack/test'
 gem 'factory_girl', :group => :test
+gem 'json_spec', :group => :test
+gem 'rack-test', :require => 'rack/test'
 gem 'shoulda', :group => :test
