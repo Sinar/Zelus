@@ -17,7 +17,6 @@ gem 'dm-mysql-adapter', :group => :local
 gem 'dm-postgres-adapter', :group => :heroku
 gem 'dm-transactions', '1.2.0'
 gem 'pg', '0.10.0', :group => :heroku
-gem 'psych'
 
 gem 'thin', :group => :development
 
