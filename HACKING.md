@@ -9,6 +9,11 @@ Quick Start
     bundle exec ruby migrations.rb
     bundle exec thin start
 
+Quick Test
+----------
+
+    bundle exec rspec -f d
+
 Problems
 --------
 
