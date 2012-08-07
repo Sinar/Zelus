@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe '/people', :type => :api do
 
-  let (:user) { create :user }
+  let (:user) { FactoryGirl.create :user }
 
   before :each do
-    @person = create :person
+    @person = FactoryGirl.create :person
   end
 
   context 'Getting all people' do
@@ -25,10 +25,31 @@ describe '/people', :type => :api do
     end
   end
 
-  context 'Creating a person' do
+  context 'Creating a person via HTTP params' do
     it "should be persisted and readable after" do
-      post "/person?api_key=#{user.api_key}", build(:person, { name: 'Samantha Saint' }).attributes.delete_if{ |k| k == :type }
+      post "/person?api_key=#{user.api_key}", build(:person, { name: 'Presley Hart' }).attributes.delete_if{ |k| k == :type }
+      Person.all(:name.like => '%Presley%Hart%').count.should == 1
+    end
+  end
+
+  context 'Creating a person via JSON' do
+    it "should be persisted and readable after" do
+      post "/person?api_key=#{user.api_key}", { person: build(:person, { name: 'Samantha Saint' }).attributes.delete_if{ |k| k == :type }.to_json }
       Person.all(:name.like => '%Samantha%Saint%').count.should == 1
+    end
+  end
+
+  context 'Updating a person via HTTP params' do
+    it "should see the changes being reflected" do
+      post "/person/#{@person.uuid}?api_key=#{user.api_key}", { name: 'Presley Allure' }
+      Person.all(:name.like => '%Presley%Allure%').count.should == 1
+    end
+  end
+
+  context 'Updating a person via JSON' do
+    it "should see the changes being reflected" do
+      post "/person/#{@person.uuid}?api_key=#{user.api_key}", { person: { name: 'Saint Samantha' }.to_json }
+      Person.all(:name.like => '%Saint%Samantha%').count.should == 1
     end
   end
 

@@ -5,14 +5,17 @@ Quick Start
 -----------
 
     gem install bundler
-    bundle install 
-    bundle exec ruby migrations.rb
+    bundle install
+    bundle exec irb -r ./migrations.rb
+      DataMapper.auto_upgrade!
+      Setup.migrate
+    ^D
     bundle exec thin start
 
 Quick Test
 ----------
 
-    bundle exec rspec -f d
+    DATABASE_URL="mysql://u:p@h/zelus_test" bundle exec rspec -f d
 
 Problems
 --------

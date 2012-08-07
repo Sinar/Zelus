@@ -38,10 +38,16 @@ end
 # create either a person or an MP
 ["/person", "/representative"].each do |route|
   post route do  
-    begin      
+    begin
       person = (route == "/person" ? Person.create : Member.create)
-      params.each do |param, value|
-        person.send("#{param}=".to_sym, value) unless param == "api_key"
+      if params.key? 'person'
+        JSON.parse(params['person']).each do |k, v|
+          person.send("#{k}=".to_sym, v) unless %w(id type uuid).include? k
+        end
+      else
+        params.each do |param, value|
+          person.send("#{param}=".to_sym, value) unless %w(api_key id type uuid).include? param
+        end
       end
       person.save
       {status: "success", payload: person.uuid}.to_json
@@ -53,12 +59,19 @@ end
 
 # update either a person or an MP
 ["/person/:uuid", "/representative/:uuid"].each do |route|
-  post route do  
+  post route do
     person = Person.first uuid: params[:uuid]
     raise "Person not found" if person.nil?    
     begin
-      params.each do |param, value|
-        person.send("#{param}=".to_sym, value) unless param == "api_key"
+      person = (route == "/person" ? Person.create : Member.create)
+      if params.key? 'person'
+        JSON.parse(params['person']).each do |k, v|
+          person.send("#{k}=".to_sym, v) unless %w(id type uuid).include? k
+        end
+      else
+        params.each do |param, value|
+          person.send("#{param}=".to_sym, value) unless %w(api_key captures id splat type uuid).include? param
+        end
       end
       person.save
     rescue
