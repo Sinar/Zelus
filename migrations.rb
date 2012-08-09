@@ -58,10 +58,12 @@ module Setup
       begin
         member = Person.first :uuid => rec[1]
         party = Party.first :uuid => rec[6]
-        m = Membership.create :person => member, :party => party
-        m.joined_at = rec[2].to_i unless rec[2].to_s.to_i
-        m.parted_at = rec[3].to_i unless rec[3].to_s.to_i
-        m.save
+        if party
+          m = Membership.create :person => member, :party => party
+          m.joined_at = rec[2].to_i unless rec[2].to_s.to_i
+          m.parted_at = rec[3].to_i unless rec[3].to_s.to_i
+          m.save
+        end
       rescue
         p $!
       end
