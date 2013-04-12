@@ -1,0 +1,7 @@
+RUBY_VERSION=1.9.3
+if ! rvm use $RUBY_VERSION; then
+  rvm install $RUBY_VERSION
+  rvm use $RUBY_VERSION
+fi
+rvm gemset use --create ${PWD##*/}
+
